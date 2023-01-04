@@ -1,0 +1,21 @@
+mport numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+dataset =pd.read_csv("HomePrice.csv")
+x=dataset.iloc[:,1:-1].values
+y=dataset.iloc[:,-1].values
+
+x
+y
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+
+from sklearn.linear_model import LinearRegression
+mlr=LinearRegression()
+mlr.fit(x_train, y_train)
+print(mlr.intercept_)
+print(mlr.coef_)
+predicted_price=mlr.predict([[1000,2,2,0.5,50]])
+print(predicted_price)
